@@ -13,6 +13,7 @@ export class ProductComponent implements OnInit {
   reviews: Review[];
   subscription:Subscription;
   rating:number;
+  isClicked = false;
  
   constructor(private productReviewService:ProductReviewService) { }
 
@@ -38,6 +39,12 @@ export class ProductComponent implements OnInit {
         tableList.rating[i]=true;  
       }  
     }  
+  }
+  onHelpfulClick(review:Review){
+    this.isClicked = true;
+    review.isHelpfulClicked = true;
+    review.helpfulCount++;
+    console.log(review.helpfulCount);
   }
 
 }

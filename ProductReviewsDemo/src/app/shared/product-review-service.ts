@@ -10,14 +10,18 @@ export class ProductReviewService{
           "computer",
           new Date(),
           [false,false,false,false,false],
-          "sample description1"
+          "sample description1",
+          10,
+          false
           ),
           new Review(
           "This is avarage",
           "computer",
           new Date(),
           [false,false,true,true,true],
-          "sample description2"
+          "sample description2",
+          15,
+          false
           )
       
       ];

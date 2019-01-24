@@ -10,6 +10,8 @@
         <td>Date</td> 
         <td>Rating</td> 
         <td>Description</td> 
+        <td>Other</td> 
+        <td>Other</td> 
         
         </tr>  
         <tr *ngFor="let review of reviews">  
@@ -24,6 +26,18 @@
           </a>  
         </td>  
         <td>{{review.description}}</td> 
+        <td>{{review.helpfulCount}} found this helpful</td> 
+
+        <div *ngIf="!review.isHelpfulClicked">
+            <td><button type="button" class="btn btn-primaray" (click)="onHelpfulClick(review)">Helpful</button></td> 
+
+        </div>
+        <div *ngIf="review.isHelpfulClicked">
+            <p>Thanks for your feedback!!!</p>
+
+        </div>
+
+       
         </tr>  
       </table>
     <div>

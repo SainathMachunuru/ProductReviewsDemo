@@ -16,6 +16,7 @@ export class ReviewComponent implements OnInit {
 
   starList: boolean[] = [true,true,true,true,true];  
   rating:number; 
+ 
 
 
 
@@ -28,7 +29,7 @@ export class ReviewComponent implements OnInit {
   onSubmit(form:NgForm){
    // console.log("hello");
    const value = form.value;
-   const review = new Review(value.title,"computer",new Date(),this.starList,value.description);
+   const review = new Review(value.title,"computer",new Date(),this.starList,value.description,0,false);
     console.log(review);
     this.productReviewService.onAddReviewToProduct(review);
     this.router.navigate(['product']);
