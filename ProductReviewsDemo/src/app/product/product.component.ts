@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {Review} from '../review/review.model';
 import { Subscription } from '../../../node_modules/rxjs';
+import { Review } from '../review/review.model';
 import { ProductReviewService } from '../shared/product-review-service';
 
 
@@ -10,14 +10,13 @@ import { ProductReviewService } from '../shared/product-review-service';
   styleUrls: ['./product.component.css']
 })
 export class ProductComponent implements OnInit {
-  reviews: Review[];
-  subscription:Subscription;
-  rating:number;
-  isClicked = false;
- 
-  constructor(private productReviewService:ProductReviewService) { }
+  private reviews: Review[];
+  private subscription: Subscription;
+  private rating: number;
+  private isClicked = false;
+  constructor(private productReviewService: ProductReviewService) { }
 
-  ngOnInit() {
+  public ngOnInit() {
     this.subscription = this.productReviewService.reviewsChanged
       .subscribe(
         (reviews: Review[]) => {
@@ -25,22 +24,22 @@ export class ProductComponent implements OnInit {
         }
       );
    this.reviews = this.productReviewService.getReviews();
-   console.log(this.reviews);
+  // console.log(this.reviews);
   }
 
-  setStarTable(record:any,data:any){  
-    this.rating=data+1;  
-    var tableList = this.reviews.find(function (obj: any) { return obj.Id === record.Id });  
-    for(var i=0;i<=4;i++){  
-      if(i<=data){  
-        tableList.rating[i]=false;  
-      }  
-      else{  
-        tableList.rating[i]=true;  
-      }  
-    }  
+  public setStarTable(record: Review, data: number) {
+    this.rating = data + 1;
+   const tableList = this.reviews.find(function(obj) { return obj === record; });
+   console.log(tableList);
+    for (let i = 0; i <= 4; i++) {
+      if (i <= data) {
+        tableList.rating[i] = false;
+      } else {
+        tableList.rating[i] = true;
+      }
+    }
   }
-  onHelpfulClick(review:Review){
+  public onHelpfulClick(review: Review) {
     this.isClicked = true;
     review.isHelpfulClicked = true;
     review.helpfulCount++;

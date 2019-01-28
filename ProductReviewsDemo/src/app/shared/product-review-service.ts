@@ -1,36 +1,36 @@
-import {Review} from '../review/review.model'
 import { Subject } from 'rxjs';
-import {Injectable } from '../../../node_modules/@angular/core';
+import { Injectable } from '../../../node_modules/@angular/core';
+import { Review } from '../review/review.model';
+
 @Injectable()
-export class ProductReviewService{
-    reviewsChanged = new Subject<Review[]>();
-    productReviews:Review[] = [
+export class ProductReviewService {
+    public reviewsChanged = new Subject<Review[]>();
+    public productReviews: Review[] = [
         new Review(
-          "This is fabulous",
-          "computer",
+          'This is fabulous',
+          'computer',
           new Date(),
-          [false,false,false,false,false],
-          "sample description1",
+          [false, false, false, false, false],
+          'sample description1',
           10,
           false
           ),
           new Review(
-          "This is avarage",
-          "computer",
+          'This is avarage',
+          'computer',
           new Date(),
-          [false,false,true,true,true],
-          "sample description2",
+          [false, false, true, true, true],
+          'sample description2',
           15,
           false
           )
-      
       ];
 
-      public onAddReviewToProduct(review:Review){
+      public onAddReviewToProduct(review: Review) {
           this.productReviews.push(review);
           this.reviewsChanged.next(this.productReviews.slice());
       }
-      public getReviews(){
+      public getReviews() {
           return this.productReviews.slice();
       }
 
